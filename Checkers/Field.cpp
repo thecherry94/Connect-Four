@@ -13,7 +13,7 @@ Field::Field(char p1sym, char p2sym)
 
 		for (int x = 0; x < MAX_SIZE; x++)
 			m_boxes[y][x] = 0;
-	}s
+	}
 
 	m_p1sym = p1sym;
 	m_p2sym = p2sym;
@@ -31,16 +31,20 @@ bool Field::set_field(int row, EPlayerType ptype)
 	 */
 	row = abs(row - (MAX_SIZE - 1));
 
-	int* sel_row = m_boxes[row];
-
-	if (sel_row[0] != 0)
+	if (m_boxes[row][0] != 0)
 		return false;
 
 	for (int x = 0; x < MAX_SIZE; x++)
 	{
-		if (sel_row[x] != 0)
+		if (m_boxes[row][x] == 0 && x == (MAX_SIZE - 1))
 		{
-			sel_row[x - 1] = (int)ptype;
+			m_boxes[row][x] = (int)ptype;
+			return true;
+		}
+
+		if (m_boxes[row][x] != 0)
+		{			
+			m_boxes[row][x - 1] = (int)ptype;
 			return true;
 		}
 	}
@@ -49,11 +53,34 @@ bool Field::set_field(int row, EPlayerType ptype)
 
 void Field::render()
 {
+	cout << endl;
+
 	for (int col = 0; col < MAX_SIZE; col++)
 	{
-		for (int row = MAX_SIZE - 1; row >= 0; row++)
+		cout << "                                ";
+
+		for (int row = (MAX_SIZE - 1); row >= 0; row--)
 		{
 			cout << m_boxes[row][col];
+
+			if (row != 0)
+				cout << " | ";
 		}
+		
+		cout << endl;
+
+		if (col != (MAX_SIZE - 1))
+		{
+			cout << "                               ";
+			for (int row = (MAX_SIZE - 1); row >= 0; row--)
+			{
+				cout << "---";
+
+				if (row != 0)
+					cout << "+";
+			}
+		}
+
+		cout << endl;
 	}
 }
