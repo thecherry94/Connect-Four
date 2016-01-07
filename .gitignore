@@ -49,3 +49,4 @@ Temporary Items
 # Custom folders
 Debug/
 Checkers/Debug
+*.opendb
