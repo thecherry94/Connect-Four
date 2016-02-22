@@ -5,9 +5,9 @@
 class Game
 {
 	public:
-
+		void start();
 
 	private:
-		Field m_field;
+		Field* mp_field;
 
 };

@@ -153,7 +153,7 @@ EPlayerType Field::linear_check(int origin_x, int origin_y, int offset_x, int of
 
 	for (int i = 1; i <= 3; i++)
 	{
-		if (m_boxes[origin_y + offset_y*i][origin_x + offset_y*i] == p)
+		if (m_boxes[origin_y + offset_y*i][origin_x + offset_x*i] == p)
 		{
 			counter++;
 
