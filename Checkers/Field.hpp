@@ -15,6 +15,8 @@ enum EPlayerType
 	P2
 };
 
+
+
 class Field
 {
 	public:
@@ -27,5 +29,8 @@ class Field
 		int** m_boxes; // 0 = empty, 1 = player1, 2 = player2
 		char m_p1sym;
 		char m_p2sym;
+
+		EPlayerType linear_check(int origin_x, int origin_y, int offset_x, int offset_y);
+		
 
 };
